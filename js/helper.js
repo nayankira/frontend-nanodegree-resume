@@ -7,7 +7,6 @@ Don't worry, you'll learn what's going on in this file throughout the course. Yo
 Cameron Pittman
 */
 
-
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
@@ -59,8 +58,11 @@ var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
 
+
 /*
-The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
+The International Name challenge in Lesson 2 where you'll create a 
+function that will need this helper code to run. Don't delete! It hooks up 
+your code to the button you'll be appending.
 */
 $(document).ready(function() {
   $('button').click(function() {
@@ -246,3 +248,4 @@ Uncomment the code below when you're ready to implement a Google Map!
   //Make sure the map bounds get updated on page resize
 //  map.fitBounds(mapBounds);
 //});
+
