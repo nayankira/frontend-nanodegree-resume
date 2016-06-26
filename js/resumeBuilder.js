@@ -32,37 +32,51 @@ var contactInfo = {
 	"github" : "nayankira",
 	"twitter" : "",
 	"location" : "Australia"
-}
+};
 var bio = {
-	"name" : "Ryan",
+	"name" : "Ryan Na",
 	"role" : "Web Developer",
 	"age" : 32,
 	"contact info" : contactInfo,
 	"picture URL" : "images/me.jpg",
 	"welcome message" : "Hello", 
-	"skills" : skills,
+	"skills" : skills
 };
 
 var work = {};
 work.Job_postion = "Melbourne";
 work.employer = "Ofoghi";
-work.workingYears = 5;
+work.date = "April 5,2016";
 work.cityOfBusiness = "beijing";
-work."title" = "afadsdfa";
-work."description" = "fdsffasdf";
+work.title = "web develper";
+work.description = "fdsffasdf";
 
+var works = [work];
 //var education = {};
 //education["lash school"] = "the University of Melbourne";
 //education["years"] = "2013";
 //education["city"] = "Melbourne";
-project = [
-{
-	"title" : "",
-	"date" : "",
-	"description" : "",
-	"images" : ""
+projects = {
+	projects : [
+	{
+		"title" : "web project 1",
+		"date" : "April 24, 2014",
+		"description" : "This is a udacity project",
+		"images" : ""
+	}
+	],
+	display : function() {
+	for (project in projects.projects){
+		$("#projects").append(HTMLprojectStart);
+		theProject = projects.projects[project];
+		$("#projects").append(HTMLprojectTitle.replace("%data%",theProject.title));
+		$("#projects").append(HTMLprojectDates.replace("%data%",theProject.date));
+		$("#projects").append(HTMLprojectDescription.replace("%data%",theProject.description));
+		$("#projects").append(HTMLprojectImage.replace("%data%",theProject.images));
+		console.log(HTMLprojectTitle.replace("%data%",theProject.title));
+	}
 }
-]
+};
 
 education = [
 {
@@ -70,7 +84,7 @@ education = [
 	"city" :"beijing",
 	"major" :"Biotechnologies",
 	"minors" :"",
-	"graduation year" :"2013"
+	"graduation year" :"2013",
 	"degree" : "bachelor",
 	"date" : "2009",
 	"url" : "",
@@ -81,7 +95,6 @@ education = [
 		"date" : "",
 		"url" : ""
 	}
-
 	]
 },
 {
@@ -89,14 +102,70 @@ education = [
 	"city" : "Melbourne",
 	"major" : "Information Technologies",
 	"minors" : "",
-	"graduation year" : "2016"
+	"graduation year" : "2016",
 	"degree" : "master",
-	"date" : "2013"
+	"date" : "2013",
 	"url" : "",
-	"onlineCourses" : onlineCourses
+	"onlineCourses" : ""
 }
-]
+];
+
+$("#header").append(HTMLheaderName.replace("%data%", bio.name));
+
+if (bio.skills.length > 0){
+	$("#header").append(HTMLskillsStart);
+	console.log(HTMLskillsStart);
+	theSkill = HTMLskills.replace("%data%", bio.skills[0]);
+	//console.log(theSkill);
+	$("#skills").append(theSkill);
+	theSkill = HTMLskills.replace("%data%", bio.skills[1]);
+	//console.log(theSkill);
+	$("#skills").append(theSkill);
+	theSkill = HTMLskills.replace("%data%", bio.skills[2]);
+	//console.log(theSkill);
+	$("#skills").append(theSkill);
+	theSkill = HTMLskills.replace("%data%", bio.skills[3]);
+	//console.log(theSkill);
+	$("#skills").append(theSkill);
+}
+
+function displayWork() {
+	
+	for (work in works) {
+	var theJob = works[work];
+	$("#workExperience").append(HTMLworkStart);
+	console.log(HTMLworkStart);
+	var theEmployer = HTMLworkEmployer.replace("%data%",theJob.employer);
+	console.log(theEmployer);
+	var theTitle = HTMLworkTitle.replace("%data%",theJob.title);
+	console.log(theTitle);
+	var theloca = HTMLworkLocation.replace("%data%",theJob.Job_postion);
+	var theDate = HTMLworkDates.replace("%data%", theJob.date);
+	var thedesc = HTMLworkDescription.replace("%data%", theJob.description);
+	var theEmployerTitle = theEmployer + theTitle;
+	$(".work-entry:last").append(theEmployerTitle);
+	$(".work-entry:last").append(theloca);
+	$(".work-entry:last").append(theDate);
+	$(".work-entry:last").append(thedesc);
+    }
+}
+
+displayWork();
+
+$("#main").append(internationalizeButton);
+
+function displayProjects() {
+	for (project in projects){
+		$("#projects").append(HTMLprojectStart);
+		theProject = projects[project];
+		$("#projects").append(HTMLprojectTitle.replace("%data%",theProject.title));
+		$("#projects").append(HTMLprojectDates.replace("%data%",theProject.date));
+		$("#projects").append(HTMLprojectDescription.replace("%data%",theProject.description));
+		$("#projects").append(HTMLprojectImage.replace("%data%",theProject.images));
+		console.log(HTMLprojectTitle.replace("%data%",theProject.title));
+	}	
+}
 
 
-
-$("#main").append(workExper["employer"]);
+projects.display();
+//$("#main").append(workExper["employer"]);

@@ -66,11 +66,27 @@ your code to the button you'll be appending.
 */
 $(document).ready(function() {
   $('button').click(function() {
-    var iName = inName() || function(){};
+    var oldName = bio.name;
+    var iName = inName(oldName) || function(){};
     $('#name').html(iName);  
   });
 });
 
+function inName(aName) {
+  var finalName = "";
+    // Your code goes here!
+    var array = aName.split(' ');
+    console.log(array);
+    var lastName = array.pop().toUpperCase();
+    for (x=0; x < array.length; x++){
+        array[x] = array[x].toLowerCase();
+        array[x] = array[x][0].toUpperCase() + array[x].slice(1);
+    }
+    
+    finalName = array.join(" ") + " " + lastName; 
+    // Don't delete this line!
+    return finalName;
+}
 /*
 The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.
 */
@@ -86,11 +102,18 @@ function logClicks(x,y) {
   console.log('x location: ' + x + '; y location: ' + y);
 }
 
+//var loc = jQuery.Event("click"); //don need this
+
 $(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
   // your code goes here!
+  logClicks(x,y);
 });
 
-
+$(document).click(function(loc) {
+  console.log(loc.pageX, loc.pageY);
+});
 
 /*
 This is the fun part. Here's where we generate the custom Google Map for the website.
