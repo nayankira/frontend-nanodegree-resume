@@ -1,3 +1,14 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
@@ -226,8 +237,7 @@ education.display = function(){
 	}
 	//online courses
 	$("#education").append(HTMLonlineClasses);
-	$("#education").append('<div class="education-entry"
-	 id="online-entry"></div>');
+	$("#education").append('<div class="education-entry" id="online-entry"></div>');
 	for (course in education.onlineCourses){
 		var theCourse = education.onlineCourses[course];
 		var theTitle = HTMLonlineTitle
@@ -246,7 +256,7 @@ education.display = function(){
 		$("#online-entry").append(theurl);
 
 	}
-}
+};
 
 // function displayWork() {	
 // 	for (work in works) {
@@ -272,22 +282,6 @@ education.display = function(){
 
 $("#main").append(internationalizeButton);
 
-function displayProjects() {
-	$("#projects").append(HTMLprojectStart);
-	for (project in projects){
-		theProject = projects[project];
-		$("#projects").append(HTMLprojectTitle
-			.replace("%data%",theProject.title));
-		$("#projects").append(HTMLprojectDates
-			.replace("%data%",theProject.date));
-		$("#projects").append(HTMLprojectDescription
-			.replace("%data%",theProject.description));
-		$("#projects").append(HTMLprojectImage
-			.replace("%data%",theProject.images));
-		console.log(HTMLprojectTitle
-			.replace("%data%",theProject.title));
-	}	
-}
 
 function displayMap() {
 	$("#mapDiv").append(googleMap);
