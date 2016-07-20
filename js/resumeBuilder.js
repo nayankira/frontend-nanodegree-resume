@@ -36,22 +36,27 @@ This is empty on purpose! Your code to build the resume will go here.
 
 //console.log(formattedRole);
 
-var skills = ["awesome","programming", "teaching", "JS"];
-var contactInfo = {
-	"e-mail": "ryanna_unimelb@outlook.com", 
-	"mobile" : "0405908701",
-	"github" : "nayankira",
-	"twitter" : "",
-	"location" : "Melbourne"
-};
+// var skills = ["awesome","programming", "teaching", "JS"];
+// var contactInfo = {
+// 	"email": "ryanna_unimelb@outlook.com", 
+// 	"mobile" : "0405908701",
+// 	"github" : "nayankira",
+// 	"twitter" : "",
+// 	"location" : "Melbourne"
+// };
 var bio = {
 	"name" : "Ryan Na",
 	"role" : "Web Developer",
 	"age" : 32,
-	"contact_info" : contactInfo,
-	"picture_URL" : "images/me.jpg",
-	"welcome message" : "Hello", 
-	"skills" : skills,
+	"contacts" : {
+	"email": "ryanna_unimelb@outlook.com", 
+	"mobile" : "0405908701",
+	"github" : "nayankira",
+	"twitter" : "",
+	"location" : "Melbourne" },
+	"biopic" : "images/me.jpg",
+	"welcomeMessage" : "Hello", 
+	"skills" : ["awesome","programming", "teaching", "JS"],
 	display: function(){
 		theHeadRole = HTMLheaderRole
 		.replace("%data%", bio.role);		
@@ -63,26 +68,32 @@ var bio = {
 		// $("#header").append(theHeadRole);
 		$(theHeadRole).insertBefore("#topContacts");
 		$("#header").append(HTMLbioPic
-			.replace("%data%", bio.picture_URL));
+			.replace("%data%", bio.biopic));
 		if (bio.skills.length > 0){
 		$("#header").append(HTMLskillsStart);
 		console.log(HTMLskillsStart);
-		theSkill = HTMLskills
-		.replace("%data%", bio.skills[0]);
-		//console.log(theSkill);
-		$("#skills").append(theSkill);
-		theSkill = HTMLskills
-		.replace("%data%", bio.skills[1]);
-		//console.log(theSkill);
-		$("#skills").append(theSkill);
-		theSkill = HTMLskills
-		.replace("%data%", bio.skills[2]);
-		//console.log(theSkill);
-		$("#skills").append(theSkill);
-		theSkill = HTMLskills
-		.replace("%data%", bio.skills[3]);
-		//console.log(theSkill);
-		$("#skills").append(theSkill);
+
+		for (var i=0; i<bio.skills.length;i++){
+			theSkill = HTMLskills
+			.replace("%data%", bio.skills[i]);
+			$("#skills").append(theSkill);
+		}
+		// theSkill = HTMLskills
+		// .replace("%data%", bio.skills[0]);
+		// //console.log(theSkill);
+		// $("#skills").append(theSkill);
+		// theSkill = HTMLskills
+		// .replace("%data%", bio.skills[1]);
+		// //console.log(theSkill);
+		// $("#skills").append(theSkill);
+		// theSkill = HTMLskills
+		// .replace("%data%", bio.skills[2]);
+		// //console.log(theSkill);
+		// $("#skills").append(theSkill);
+		// theSkill = HTMLskills
+		// .replace("%data%", bio.skills[3]);
+		// //console.log(theSkill);
+		// $("#skills").append(theSkill);
 
 		//display the contact information 
 		// var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
@@ -93,11 +104,11 @@ var bio = {
 		// var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
 		// var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
 
-		for (key in bio.contact_info){
-			$("#topContacts")
+		for (key in bio.contacts){
+			$("#topContacts, #footerContacts")
 			.append(HTMLcontactGeneric
 				.replace("%contact%",key)
-				.replace("%data%",bio.contact_info[key]));
+				.replace("%data%",bio.contacts[key]));
 		}
 		
 
@@ -105,23 +116,29 @@ var bio = {
 	}
 };
 
-var job = {};
-job.location = "Melbourne";
-job.employer = "Ofoghi";
-job.dates = "April 5,2016";
-job.title = "web develper";
-job.description = "fdsffasdf";
+// var job = {};
+// job.location = "Melbourne";
+// job.employer = "Ofoghi";
+// job.dates = "April 5,2016";
+// job.title = "web develper";
+// job.description = "fdsffasdf";
 
-var jobs = [job];
+// var jobs = [job];
 //var education = {};
 //education["lash school"] = "the University of Melbourne";
 //education["years"] = "2013";
 //education["city"] = "Melbourne";
 
 var work = {
-	"jobs":jobs,
+	"jobs":[{
+		location : "Melbourne",
+		employer : "Ofoghi",
+		dates : "April 5,2016",
+		title : "web develper",
+		description : "fdsffasdf"
+	}],
 	display:function(){
-		for (job in work.jobs) {
+		for (var job=0;job< work.jobs.length;job++) {
 		var theJob = work.jobs[job];
 		$("#workExperience").append(HTMLworkStart);
 		console.log(HTMLworkStart);
@@ -152,7 +169,7 @@ projects = {
 		"title" : "web project 1",
 		"date" : "April 24, 2014",
 		"description" : "This is a udacity project",
-		"images" : "images/udacity-infographic-blog.jpg"
+		"images" : ['images/udacity-infographic-blog.jpg']
 	}
 	],
 
@@ -162,17 +179,19 @@ projects = {
 	// var HTMLprojectDates = '<div class="date-text">%data%</div>';
 	// var HTMLprojectDescription = '<p><br>%data%</p>';
 	// var HTMLprojectImage = '<img src="%data%">';
-	for (project in projects.projects){
+	for (var project=0; project< projects.projects.length;project++){
 		$("#projects").append(HTMLprojectStart);
 		theProject = projects.projects[project];
-		$(".project-entry").append(HTMLprojectTitle
+		$(".project-entry:last").append(HTMLprojectTitle
 			.replace("%data%",theProject.title));
-		$(".project-entry").append(HTMLprojectDates
+		$(".project-entry:last").append(HTMLprojectDates
 			.replace("%data%",theProject.date));
-		$(".project-entry").append(HTMLprojectDescription
+		$(".project-entry:last").append(HTMLprojectDescription
 			.replace("%data%",theProject.description));
-		$(".project-entry").append(HTMLprojectImage
-			.replace("%data%",theProject.images));
+		for (var i=0;i<theProject.images.length;i++){
+			$(".project-entry:last").append(HTMLprojectImage
+				.replace("%data%",theProject.images));
+		}
 		
 		console.log(HTMLprojectTitle
 			.replace("%data%",theProject.title));
@@ -184,23 +203,23 @@ var education = {};
 education.schools = [
 {
 	"name" :"Beijing University",
-	"city" :"beijing",
-	"major" :"Biotechnologies",
+	"location" :"beijing",
+	"majors" :["Biotechnologies"],
 	"minors" :"",
 	"graduation year" :"2013",
 	"degree" : "bachelor",
-	"date" : "2009",
+	"dates" : "2009",
 	"url" : ""
 },
 {
 	"name" : "the University of Melbourne",
-	"city" : "Melbourne",
-	"major" : "Information Technologies",
+	"location" : "Melbourne",
+	"majors" : ["Information Technologies"],
 	"minors" : "",
 	"graduation year" : "2016",
 	"degree" : "master",
-	"date" : "2013",
-	"url" : "",
+	"dates" : "2013",
+	"url" : "#",
 }
 ];
 
@@ -215,7 +234,7 @@ education.onlineCourses = [{
 education.display = function(){
 	//schools
 	$("#education").append(HTMLschoolStart);
-	for (school in education.schools) {
+	for (var school=0; school< education.schools.length;school++) {
 		var theSchool = education.schools[school];
 		var theName = HTMLschoolName
 		.replace("%data%",theSchool.name)
@@ -223,22 +242,28 @@ education.display = function(){
 		var theDegree = HTMLschoolDegree
 		.replace("%data%",theSchool.degree);
 		var theDate = HTMLschoolDates
-		.replace("%data%",theSchool.date);
+		.replace("%data%",theSchool.dates);
 		var theLocation = HTMLschoolLocation
-		.replace("%data%",theSchool.city);
-		var theMajor = HTMLschoolMajor
-		.replace("%data%",theSchool.major);
+		.replace("%data%",theSchool.location);
 
-		$(".education-entry").append(theName);
-		$(".education-entry").append(theDegree);
-		$(".education-entry").append(theDate);
-		$(".education-entry").append(theLocation);
-		$(".education-entry").append(theMajor);
+		$(".education-entry:last").append(theName);
+		$(".education-entry:last").append(theDegree);
+		$(".education-entry:last").append(theDate);
+		$(".education-entry:last").append(theLocation);
+
+		for (i=0;i<theSchool.majors.length;i++){
+			var theMajor = HTMLschoolMajor
+			.replace("%data%",theSchool.majors);
+			$(".education-entry").append(theMajor);
+		}
+
 	}
 	//online courses
 	$("#education").append(HTMLonlineClasses);
-	$("#education").append('<div class="education-entry" id="online-entry"></div>');
-	for (course in education.onlineCourses){
+	// $("#education").append('<div class="education-entry" id="online-entry"></div>');
+	$("#education").append(HTMLschoolStart);
+
+	for (var course=0; course< education.onlineCourses.length; course++){
 		var theCourse = education.onlineCourses[course];
 		var theTitle = HTMLonlineTitle
 		.replace("%data%",theCourse.title)
@@ -250,10 +275,10 @@ education.display = function(){
 		var theurl = HTMLonlineURL
 		.replace("%data%",theCourse.url);
 		
-		$("#online-entry").append(theTitle);
-		$("#online-entry").append(theSchool);
-		$("#online-entry").append(theDate);
-		$("#online-entry").append(theurl);
+		$(".education-entry:last").append(theTitle);
+		$(".education-entry:last").append(theSchool);
+		$(".education-entry:last").append(theDate);
+		$(".education-entry:last").append(theurl);
 
 	}
 };
